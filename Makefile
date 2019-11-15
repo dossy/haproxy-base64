@@ -6,13 +6,17 @@ OBJS = $(SRCS:.c=.o)
 all: $(BIN)
 
 $(BIN): $(OBJS)
-	gcc -o $@ $^
+	gcc -Wall -o $@ $^
 
 .c.o:
-	gcc -c -o $@ $<
+	gcc -Wall -c -o $@ $<
 
 base64.o: base64.c
 main.o: main.c
+
+.PHONY: clean
+clean:
+	$(RM) $(BIN) $(OBJS)
 
 .PHONY: test
 test: $(BIN)
